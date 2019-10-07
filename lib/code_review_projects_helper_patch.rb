@@ -13,11 +13,13 @@ module ProjectsHelperMethodsCodeReview
   module InstanceMethods
     def project_settings_tabs_with_code_review
       tabs = project_settings_tabs_without_code_review
-      tabs.push({ name:       'code_review',
-                  controller: 'code_review_settings',
-                  action:     :show,
-                  partial:    'code_review_settings/show',
-                  label:      :code_review}) if User.current.allowed_to?(:show, @project)
+      action = { name:       'code_review',
+                 controller: 'code_review_settings',
+                 action:     :show,
+                 partial:    'code_review_settings/show',
+                 label:      :code_review}
+
+      tabs.push(action) if User.current.allowed_to?(action, @project)
       tabs
     end
   end
