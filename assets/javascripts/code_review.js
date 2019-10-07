@@ -275,11 +275,14 @@ function formPopup(x, y) {
     //        position: [x, y + 5],
     width: 640,
     zIndex: topZindex,
-    title: add_form_title
+    title: add_form_title,
+    close: function(event, ui) {
+      hideForm();
+    }
   });
   //    win.getContent().style.background = "#ffffff";
   if (review_form_dialog != null) {
-    review_form_dialog.destroy();
+    review_form_dialog.dialog('destroy');
     review_form_dialog = null;
   }
   review_form_dialog = win;
